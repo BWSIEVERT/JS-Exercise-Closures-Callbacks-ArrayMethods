@@ -27,11 +27,11 @@ function processFirstItem(stringList, callback) {
  * Study the code for counter1 and counter2. Answer the questions below.
  * 
  * 1. What is the difference between counter1 and counter2?
- * 
+ *  Counter1 is referring to the closure for let count = 0. Counter2 is grabbing the let count = 0; from the global scope.
  * 2. Which of the two uses a closure? How can you tell?
- * 
+ *  Counter1 is using closure because it is referring to its surrounding state. Which is also known as the lexical environment.
  * 3. In what scenario would the counter1 code be preferable? In what scenario would counter2 be better? 
- *
+ * Counter1 would be preferable for calling the conuterMaker() for later use in the code. Counter2 would be be better for an instant program.
 */
 
 // counter1 code
@@ -56,11 +56,17 @@ function counter2() {
 
 Write a function called `inning` that generates a random number of points that a team scored in an inning. This should be a whole number between 0 and 2. */
 
-function inning(/*Code Here*/){
-
-    /*Code Here*/
-
+function getRandomInt(min, max){
+  min = Math.ceil(min);
+  max = Math.floor(max);
+  return Math.floor(Math.random() * (max - min) + min);
 }
+
+function inning(){
+  let points = getRandomInt(1, 3);
+    return points;
+}
+console.log(inning());
 
 /* Task 3: finalScore()
 
@@ -76,12 +82,21 @@ finalScore(inning, 9) might return:
 
 */ 
 
-function finalScore(/*code Here*/){
+function finalScore(callback, numOfInnings){
+  let team1 = 0
+  let team2 = 0
 
-  /*Code Here*/
-
+  for (let i = 0; i < numOfInnings; i++){
+    team1 = team1 + callback;
+    team2 = team2 + callback;
+  }
+  
+  return {
+    home: team1,
+    away: team2
+  }
 }
-
+console.log(finalScore(inning(), 9))
 /* Task 4: 
 
 Create a function called `scoreboard` that accepts the following parameters: 
